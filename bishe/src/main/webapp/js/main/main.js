@@ -61,6 +61,22 @@ function validatet() {
 	});
 }
 
+function loginout(){
+	console.log("login out");
+	$.ajax({
+		type : "post",
+		data : {
+			"keyword" : $("#keyword").val()
+		},
+		async: false,
+		dataType : "json",
+		url : "/bishe/user/userAction_loginout.action",
+		cache : false,
+		success : function(data) {
+			window.location.href="index.jsp";
+		}
+	});
+}
 
 function searchArctile() {
 	$.ajax({
@@ -101,61 +117,85 @@ function searchArctile() {
 			$("#right_page").html(formHtml(data));
 		}
 	});
-	
-	function searchArticleById(data){
-		$.ajax({
-			type : "post",
-			data : {
-				"articleid" : data
-			},
-			async: false,
-			dataType : "json",
-			url : "/bishe/user/userAction_searchArticleById.action",
-			cache : false,
-			success:function(data){
-				console.log(data);
-				
-				}
-			})
-	}
-	
-	function formHtml(data){
-		var str = "";
-	    for(var i=0;i<data.articleList.length;i++){
-	    	/*var dat = formatdate(data.articleList[i].createtime);*/
+}
 
-	     str += '<div class="b-blog-listing__block">' +
-	                '<div class="b-blog-listing__block-top">    ' +
-	                    '<h4><button class="btn btn-link" onclick="searchArticleById('+data.articleList[i].articleid+')">'+data.articleList[i].title+'</button><h4>    ' +
-	                '</div>   ' +
-	                '<div class="b-infoblock-with-icon b-blog-listing__infoblock">   ' +
-	                    ' <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">  ' +
-	                        ' <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">   ' +
-	                            'By <button onclick="searchArticleWithAuthor('+data.articleList[i].author+')"  class="btn btn-link f-more">'+data.articleList[i].author+'</button> In <button onclick="seachArticleWithType('+data.articleList[i].type+')"  class="btn btn-link f-more">'+data.articleList[i].type+'</button> ' +
-	                             '发表时间 '+formatdate(data.articleList[i].createtime)+
-	                             '<a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-eye"></i>'+data.articleList[i].credit+' Views</a>' +
-	                        '</div>' +
-	                    '<div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text" style=" height:20px;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;"> ' +
-	        data.articleList[i].paragraph+'</div>' +
-	                        '<div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text"> ' +
-	                            '  <button onclick="searchArticleById('+data.articleList[i].articleid+')" class="btn btn-link f-more f-primary-b">查看全文</button>' +
-	                        ' </div>' +
-	                    '</div>' +
-	                '</div>' +
-	        '</div>';
-	    }
-	    return str;
+function formHtml(data){
+	var str = "";
+	for(var i=0;i<data.articleList.length;i++){
+		/*var dat = formatdate(data.articleList[i].createtime);*/
+		
+		str += '<div class="b-blog-listing__block">' +
+		'<div class="b-blog-listing__block-top">    ' +
+		'<h4><button class="btn btn-link h4 f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr"  onclick="searchArticleById('+data.articleList[i].articleid+')">'+data.articleList[i].title+'</button></h4>    ' +
+		'</div>   ' +
+		'<div class="b-infoblock-with-icon b-blog-listing__infoblock">   ' +
+		' <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">  ' +
+		' <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">   ' +
+		'By <button onclick="searchArticleWithAuthor('+data.articleList[i].author+')"  class="btn btn-link f-more">'+data.articleList[i].author+'</button> In <button onclick="seachArticleWithType('+data.articleList[i].type+')"  class="btn btn-link f-more">'+data.articleList[i].typename+'</button> ' +
+		'发表时间 '+formatdate(data.articleList[i].createtime)+
+		'<a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-eye"></i>'+data.articleList[i].credit+' Views</a>' +
+		'</div>' +
+		'<div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text" style=" height:20px;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;"> ' +
+		data.articleList[i].paragraph+'</div>' +
+		'<div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text"> ' +
+		'  <button onclick="searchArticleById('+data.articleList[i].articleid+')" class="btn btn-link f-more f-primary-b">查看全文</button>' +
+		' </div>' +
+		'</div>' +
+		'</div>' +
+		'</div>';
 	}
-	
-	function formatdate(data){
-		if(data!=null&&data.trim()!=""){
-			
+	return str;
+}
+
+function searchArticleById(data){
+	$.ajax({
+		url : "/bishe/user/userAction_searchArticleById.action",
+		type : "post",
+		data : {
+			"articleid" : data
+		},
+		async: false,
+		dataType : "json",
+		cache : false,
+		success:function(data){
+			console.log(data);
+			var title = data.article.title;
+			var paragraph = data.article.paragraph;
+			var count=0;
+			var st = "<p class='lead'>";
+			var temp = paragraph.split("。");
+			$.each(temp,function(i,val){
+				count++;
+				st+=val;
+				if(count%5==0){
+					st+="。</p><p class='lead'>";
+				}
+			});
+			st+="</p>";
+			var content =' <div class="b-blog-listing__block">		' +
+            '		<div class="b-blog-listing__block-top">          ' +
+            '              <div class="text-center h2">          ' +
+                       '    '+title+'                              ' +
+                       '    </div>                                     ' +
+         '             </div>                 ' +
+               '       <div class="b-infoblock-with-icon b-blog-listing__infoblock">     ' +
+       '                   	<div id="paragraph">          ' +
+                       '           '+st+'   		                        ' +
+                           '	</div>    ' +
+       '                </div>              ' +
+           '      </div>';
+			$("#right_page").html(content);
+		}
+	})
+}
+
+function formatdate(data){
+	if(data!=null&&data.trim()!=""){
 		var pattern = /(\d{4})(\d{2})(\d{2})(\d{1})(\d{2})(\d{2})(\d{2})/;
 		var formatedDate = data.replace(pattern, '$1-$2-$3 $5:$6:$7');
 		return formatedDate;
-		}
-		return "";
 	}
+	return "";
 }
 
 

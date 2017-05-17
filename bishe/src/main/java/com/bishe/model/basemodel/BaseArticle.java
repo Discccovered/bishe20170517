@@ -10,7 +10,9 @@ public class BaseArticle {
 	private String status;
 	private String picture;
 	private String type;
-
+	private int credit;
+	private String typename;
+	
 	public String getArticleid() {
 		return articleid;
 	}
@@ -83,7 +85,6 @@ public class BaseArticle {
 		this.credit = credit;
 	}
 
-	private int credit;
 
 	@Override
 	public String toString() {
@@ -94,5 +95,13 @@ public class BaseArticle {
 				+ (status != null ? "status=" + status + ", " : "")
 				+ (picture != null ? "picture=" + picture + ", " : "") + (type != null ? "type=" + type + ", " : "")
 				+ "credit=" + credit + "]";
+	}
+
+	public String getTypename() {
+		return typename;
+	}
+
+	public void setTypename(String typename) {
+		this.typename = typename;
 	}
 }

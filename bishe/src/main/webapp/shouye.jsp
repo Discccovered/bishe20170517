@@ -21,10 +21,7 @@
 
 
 </p>
-<!-- <p class="lead">孔颖达 疏：“万物变化，或生或成，是神明之德。”
 
-
-</p> -->
 <p class="lead">《孝经·感应》：“天地明察，神明彰矣。”
 
 
@@ -55,60 +52,8 @@
 <p>养生也是如此，不要天天琢磨着吃什么最补喝什么最养等等，这些只是治标不治本。如果不懂得顺其自然的智慧或者说主不明，则其他一切养生方法都有可能是灾祸！养生也需要觉悟！切记！</p>
 
                         	</div>
-                           <!--  <a href="#" class="b-infoblock-with-icon__icon f-infoblock-with-icon__icon fade-in-animate hidden-xs">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                            <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">
-                                <a href="#" class="f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr">
-                                    Mauris ac risus neque, ut pulvinar risus
-                                </a>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">
-                                    By <a href="#" class="f-more">Stephen Brock</a> In <a href="#" class="f-more">Lifestyle</a>, <a href="#" class="f-more">Photography</a> Posted May 24th, 2013
-                                    <a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-comment"></i>12 Comments</a>
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text">
-                                    Pendisse blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat, a placerat tellus laoreet eget. Blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis.
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text">
-                                    <a href="#" class="f-more f-primary-b">Read more</a>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
-                   <!--  <div class="b-blog-listing__block">
-                        <div class="b-video-player b-blog-listing__block-top">
-                            <iframe src="http://player.vimeo.com/video/81801013?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="870" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                        </div>
-                        <div class="b-infoblock-with-icon b-blog-listing__infoblock">
-                            <a href="#" class="b-infoblock-with-icon__icon f-infoblock-with-icon__icon fade-in-animate hidden-xs">
-                                <i class="fa fa-video-camera"></i>
-                            </a>
-                            <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">
-                                <a href="#" class="f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr">
-                                    This Is Vimeo video post
-                                </a>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">
-                                    By <a href="#" class="f-more">Stephen Brock</a> In <a href="#" class="f-more">Lifestyle</a>, <a href="#" class="f-more">Photography</a> Posted May 24th, 2013
-                                    <a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-comment"></i>12 Comments</a>
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text">
-                                    Pendisse blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat, a placerat tellus laoreet eget. Blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis.
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text">
-                                    <a href="#" class="f-more f-primary-b">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                   
 
-           <!--          <div class="b-pagination f-pagination">
-    <ul>
-        <li><a href="#">First</a></li>
-        <li><a class="prev" href="#"><i class="fa fa-angle-left"></i></a></li>
-        <li class="is-active-pagination"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a class="next" href="#"><i class="fa fa-angle-right"></i></a></li>
-        <li><a href="#">Last</a></li>
-    </ul>
-</div> -->
+          

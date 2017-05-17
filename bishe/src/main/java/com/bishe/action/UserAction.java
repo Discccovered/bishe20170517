@@ -105,6 +105,17 @@ public class UserAction extends BaseAction {
 		return "succ";
 	}
 
+	public void loginout() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			session.remove("user");
+			map.put("status", "1");
+		} catch (Exception e) {
+			map.put("status", "2");
+		}
+		writeJSON(map);
+	}
+	
 	public void write() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
