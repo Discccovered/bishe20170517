@@ -22,4 +22,7 @@ public interface ArticleDao {
 	
 	@Select("select * from article where articleid=#{articleid}")
 	BaseArticle searchArticleById(String articleid);
+
+	@Select("select a.*,t.typename from article a left join types t on a.type=t.articletype where a.author=#{author} ")
+	List<BaseArticle> searchArticleWithAuthor(String author);
 }

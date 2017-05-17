@@ -33,6 +33,11 @@ public class ArticleServiceImpl implements ArticleService {
 		
 		return articleDao.searchArticleById(articleid);
 	}
+
+	@Override
+	public List<BaseArticle> searchArticleWithAuthor(String author) {
+		return articleDao.searchArticleWithAuthor(author);
+	}
 	
 	
 

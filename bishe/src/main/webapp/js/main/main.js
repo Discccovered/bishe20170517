@@ -119,6 +119,21 @@ function searchArctile() {
 	});
 }
 
+function searchArticleWithAuthor(data){
+	consolo.log("searchArticleWithAuthor");
+	$.ajax({
+		url:"/bishe/user/userAction_searchArticleWithAuthor.action",
+		cache:false,
+		dataType:"json",
+		data:{"author":data},
+		type:"post",
+		success:function(data){
+			console.log(data);
+			$("#right_page").html(formHtml(data));
+		}
+	});
+}
+
 function formHtml(data){
 	var str = "";
 	for(var i=0;i<data.articleList.length;i++){

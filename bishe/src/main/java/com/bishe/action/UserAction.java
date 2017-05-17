@@ -39,10 +39,11 @@ public class UserAction extends BaseAction {
 
 	private String keyword;
 	private BaseUser user;
-	private File file;
 	private BaseArticle article;
 	private String articleid;
-	
+	private String author;
+
+	private File file;
 	// 提交过来的file的名字
 	private String fileFileName;
 
@@ -105,7 +106,20 @@ public class UserAction extends BaseAction {
 		return "succ";
 	}
 
-	public void loginout() throws Exception{
+	public void searchArticleWithAuthor() throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("-------");
+		try {
+			List<BaseArticle> list = articleService.searchArticleWithAuthor(author);
+			map.put("articleList", list);
+			map.put("status", "1");
+		} catch (Exception e) {
+			map.put("status", "2");
+		}
+		writeJSON(map);
+	}
+
+	public void loginout() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			session.remove("user");
@@ -115,7 +129,7 @@ public class UserAction extends BaseAction {
 		}
 		writeJSON(map);
 	}
-	
+
 	public void write() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -145,8 +159,8 @@ public class UserAction extends BaseAction {
 		}
 		writeJSON(map);
 	}
-	
-	public void searchArticleById() throws Exception{
+
+	public void searchArticleById() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			BaseArticle article = articleService.searchArticleById(articleid);
@@ -226,5 +240,13 @@ public class UserAction extends BaseAction {
 
 	public void setArticleid(String articleid) {
 		this.articleid = articleid;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }

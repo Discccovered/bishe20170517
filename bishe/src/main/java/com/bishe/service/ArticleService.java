@@ -9,4 +9,5 @@ public interface ArticleService {
 	int insertArticle(BaseArticle article);
 	List<BaseArticle> getSearchArticleResult(String keywords);
 	BaseArticle searchArticleById(String articleid);
+	List<BaseArticle> searchArticleWithAuthor(String author);
 }
