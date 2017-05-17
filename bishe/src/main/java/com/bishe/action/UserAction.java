@@ -43,6 +43,7 @@ public class UserAction extends BaseAction {
 	private String articleid;
 	private String author;
 
+	private String type;
 	private File file;
 	// 提交过来的file的名字
 	private String fileFileName;
@@ -166,6 +167,21 @@ public class UserAction extends BaseAction {
 			BaseArticle article = articleService.searchArticleById(articleid);
 			map.put("article", article);
 			map.put("status", "1");
+			article.setCredit(article.getCredit()+1);
+			articleService.updateArtileCredit(article);
+		} catch (Exception e) {
+			map.put("status", "2");
+			map.put("msg", "something wrong");
+		}
+		writeJSON(map);
+	}
+	
+	public void seachArticleWithType() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<BaseArticle> seachArticleWithType = articleService.seachArticleWithType(type);
+			map.put("articleList", seachArticleWithType);
+			map.put("status", "1");
 		} catch (Exception e) {
 			map.put("status", "2");
 			map.put("msg", "something wrong");
@@ -248,5 +264,13 @@ public class UserAction extends BaseAction {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

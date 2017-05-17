@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.bishe.model.basemodel.BaseArticle;
@@ -25,4 +26,10 @@ public interface ArticleDao {
 
 	@Select("select a.*,t.typename from article a left join types t on a.type=t.articletype where a.author=#{author} ")
 	List<BaseArticle> searchArticleWithAuthor(String author);
+	
+	@Select("select a.*,t.typename from article a left join types t on a.type=t.articletype where a.type=#{type} ")
+	List<BaseArticle> seachArticleWithType(String type);
+	
+	@Update("update article set credit=#{credit} where articleid=#{articleid}")
+	int updateArtileCredit(BaseArticle article);
 }

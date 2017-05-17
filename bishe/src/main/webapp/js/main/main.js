@@ -119,19 +119,37 @@ function searchArctile() {
 	});
 }
 
-function searchArticleWithAuthor(data){
-	consolo.log("searchArticleWithAuthor");
+function searchArticleWithAuthor(){
+	console.log("searchArticleWithAuthor");
 	$.ajax({
 		url:"/bishe/user/userAction_searchArticleWithAuthor.action",
 		cache:false,
 		dataType:"json",
-		data:{"author":data},
+		data:{"author":$("#authorBtn").val()},
 		type:"post",
 		success:function(data){
 			console.log(data);
 			$("#right_page").html(formHtml(data));
 		}
 	});
+}
+function seachArticleWithType(data){
+	console.log("searchArticleWithAuthor");
+	$.ajax({
+		url:"/bishe/user/userAction_seachArticleWithType.action",
+		cache:false,
+		dataType:"json",
+		data:{"type":data},
+		type:"post",
+		success:function(data){
+			console.log(data);
+			$("#right_page").html(formHtml(data));
+		}
+	});
+}
+
+function chatting(){
+	$("#right_page").load("chatting.jsp");
 }
 
 function formHtml(data){
@@ -146,7 +164,7 @@ function formHtml(data){
 		'<div class="b-infoblock-with-icon b-blog-listing__infoblock">   ' +
 		' <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">  ' +
 		' <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">   ' +
-		'By <button onclick="searchArticleWithAuthor('+data.articleList[i].author+')"  class="btn btn-link f-more">'+data.articleList[i].author+'</button> In <button onclick="seachArticleWithType('+data.articleList[i].type+')"  class="btn btn-link f-more">'+data.articleList[i].typename+'</button> ' +
+		'By <button onclick="searchArticleWithAuthor()" id="authorBtn" value="'+data.articleList[i].author+'" class="btn btn-link f-more">'+data.articleList[i].author+'</button> In <button onclick="seachArticleWithType(this.value)" value="'+data.articleList[i].type+'" class="btn btn-link f-more">'+data.articleList[i].typename+'</button> ' +
 		'发表时间 '+formatdate(data.articleList[i].createtime)+
 		'<a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-eye"></i>'+data.articleList[i].credit+' Views</a>' +
 		'</div>' +

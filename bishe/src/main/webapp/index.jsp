@@ -158,10 +158,9 @@ label.error {
 									</button></li>
 								<li><button type="button" class="btn btn-link  navbar-btn"
 										id="guanyuyangsheng">关于养生</button></li>
-								<li><button type="button" class="btn btn-link  navbar-btn"
-										id="yangshengxinde" onclick="yangshengxinde">养生心得</button></li>
-								<li><a href="#">新闻动态</a></li>
-								<li><a href="#">养生保健</a></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	id="yangshengxinde" onclick="seachArticleWithType(this.value)" value="1">养生心得</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	onclick="seachArticleWithType(this.value)" value="7">新闻动态</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="2">养生保健</button></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">四季养生 <span class="caret"></span></a>
@@ -171,7 +170,7 @@ label.error {
 										<li><a href="#">秋季养生</a></li>
 										<li><a href="#">冬季养生</a></li>
 									</ul></li>
-								<li><a href="#">在线咨询</a></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	id="chatting" onclick="chatting()" >在线咨询</button></li>
 							</ul>
 
 							<ul class="nav navbar-nav navbar-right">
