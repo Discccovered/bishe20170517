@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="user" type="com.bishe.model.basemodel.BaseUser"/>
+		<typeAlias alias="product" type="com.bishe.model.basemodel.BaseProduct"/>
+		<typeAlias alias="article" type="com.bishe.model.basemodel.BaseArticle"/>
+		<!-- <typeAlias alias="companytype" type="com.purvar.demo.model.base.BaseCompanyType"/>
+		<typeAlias alias="area" type="com.purvar.demo.model.base.BaseArea"/> -->
+	</typeAliases>
+</configuration>

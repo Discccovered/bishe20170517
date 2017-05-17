@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.locale" value="zh_CN"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+	<constant name="struts.multipart.maxSize" value="10701096"/>
+	<constant name="struts.action.extension" value="action"/>
+
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="userAction_*" class="userAction" method="{1}">
+			<result name="succ">/index.jsp</result>
+			<result name="err">/login.jsp</result>
+		</action>
+		<!-- <action name="userAction_login" class="userAction" method="login"></action> -->
+	</package>
+</struts>
