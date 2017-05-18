@@ -49,31 +49,19 @@ label.error {
 <!-- Modules -->
 <script src="js/modules/color-themes.js"></script>
 <script type="text/javascript" src="js/login/jquery.validate.min.js"></script>
-<!-- End Modules -->
-<!-- Google services -->
-<!--<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
 
-&lt;!&ndash; end Google services &ndash;&gt;
-&lt;!&ndash; Fancybox &ndash;&gt;
-<script src="js/fancybox/jquery.fancybox.pack.js"></script>
-<script src="js/fancybox/jquery.mousewheel.pack.js"></script>
-<script src="js/fancybox/jquery.fancybox.custom.js"></script>-->
-<!-- End Fancybox -->
+
 
 <script src="js/cookie.js"></script>
 <script src="js/main/main.js"></script>
 
 <!-- Bootstrap css -->
 <link type="text/css" rel='stylesheet' href="css/bootstrap.min.css">
+<link type="text/css" rel='stylesheet' href="css/font-awesome.min.css">
 
 <!-- End Bootstrap css -->
 
 
-<!-- Fancybox -->
-<!--<link type="text/css" rel='stylesheet' href="js/fancybox/jquery.fancybox.css">-->
-<!-- End Fancybox -->
-
-<!--<link type="text/css" rel='stylesheet' href="fonts/fonts.css">-->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext'
 	rel='stylesheet' type='text/css'>
@@ -165,11 +153,12 @@ label.error {
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">四季养生 <span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="#">春季养生</a></li>
-										<li><a href="#">夏季养生</a></li>
-										<li><a href="#">秋季养生</a></li>
-										<li><a href="#">冬季养生</a></li>
+										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="3">春节养生</button></li>
+										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="4">夏季养生</button></li>
+										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="5">秋季养生</button></li>
+										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="6">冬季养生</button></li>
 									</ul></li>
+									<li></li>
 								<li><button type="button" class="btn btn-link  navbar-btn"	id="chatting" onclick="chatting()" >在线咨询</button></li>
 							</ul>
 
@@ -184,10 +173,10 @@ label.error {
 										id="storeusername"></a>
 									<ul class="dropdown-menu">
 										<li class="text-center"><button
-												style="background-color: #FFF" onclick="writearticle()"
-												id="writearticle">写文章</button></li>
+												style="background-color: #FFF" class="btn navbar-btn" onclick="writearticle()"
+												id="writearticle"><i class="icon-pencil"></i>写文章</button></li>
 										<li class="text-center"><button
-												style="background-color: #FFF" onclick="loginout()"
+												style="background-color: #FFF" class="btn navbar-btn" onclick="loginout()"
 												id="loginout">注销</button></li>
 									</ul></li>
 							</ul>
@@ -307,11 +296,8 @@ label.error {
 								<div class="b-categories-filter">
 									<h4
 										class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">当前在线</h4>
-									<ul>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Web Design</a> <span
-											class="b-categories-filter_count f-categories-filter_count">12</span>
-										</li>
+									<ul id="onlinelist">
+										
 										<li><a class="f-categories-filter_name" href="#"><i
 												class="fa fa-plus"></i> Smart Phone</a> <span
 											class="b-categories-filter_count f-categories-filter_count">23</span>

@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="js/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="websocket.js"></script>
 	<script type="text/javascript">
-		var user = "${user}";
+		var user = "${user.username}";
 		/* $(function(){
 			alert("1111111");
 			console.log($(".x-grid-cell-inner "));

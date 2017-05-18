@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib prefix="s" uri="/struts-tags" %>
+    <%
+	String path = request.getRequestURI();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<base href="<%=basePath%>">
 	<head>
 		<title>login</title>
 		<!--用百度的静态资源库的cdn安装bootstrap环境-->
@@ -62,6 +69,7 @@
 						<hr />
 						<a href="javascript:;" id="register_btn" style="color: black" class="">注册</a>
 					</div>
+					<s:fielderror fieldName="err_msg" theme="simple"></s:fielderror>
 					<div id="prompt" hidden="hidden">用户名或密码错误</div>
 					<div class="form-group">
 						<input type="button" class="btn btn-success" id="loginbtn" value="登录"/>   

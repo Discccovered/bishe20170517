@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.catalina.websocket.WebSocketServlet;
+import org.apache.log4j.Logger;
+
 public class WebSocketMessageInboundPool {
 
+	private static final Logger log = Logger.getLogger(WebSocketMessageInboundPool.class);
 	//保存连接的MAP容器
 	private static final Map<String,WebSocketMessageInbound > connections = new HashMap<String,WebSocketMessageInbound>();
 	

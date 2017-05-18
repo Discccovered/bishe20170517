@@ -39,8 +39,34 @@ $(function() {
 	modifyHtml();
 	console.log($("#articleparagraph").val());
 	
+	$("#onlinelist").html(getOnlineMember());
 	
 })
+
+function getOnlineMember(){
+	var result;
+	$.ajax({
+		type : "post",
+		data : {
+			"keyword" : $("#keyword").val()
+		},
+		async: false,
+		dataType : "json",
+		url : "/bishe/user/userAction_getOnlineMember.action",
+		cache : false,
+		success : function(data) {
+			console.log(data);
+			var html ="";
+			for(var i=0;i<data.onlinemember.length;i++){
+				html+= '<li><a class="f-categories-filter_name" ><i	class="icon-user-md"></i> '+data.onlinemember[i].username+'</a> <span class="b-categories-filter_count f-categories-filter_count">'+data.onlinemember[i].credit+'</span></li>';
+			}
+			result=html;
+		}
+	});
+	return result;
+}
+
+
 
 function validatet() {
 	return $("#insertarticleform").validate({
@@ -149,6 +175,12 @@ function seachArticleWithType(data){
 }
 
 function chatting(){
+	var user = $("#usercontainer").val();
+	if(user==null||user.trim()==""){
+		alert("你还未登录，无法进入聊天室");
+		return;
+	}
+		
 	$("#right_page").load("chatting.jsp");
 }
 

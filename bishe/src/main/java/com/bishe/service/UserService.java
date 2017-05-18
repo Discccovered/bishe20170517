@@ -16,5 +16,6 @@ public interface UserService {
 	BaseUser getUserById(String id);
 	int deleteUserById(String id);
 	BaseUser findUser(BaseUser user);
-	
+	List<BaseUser> getOnlineMember();
+	BaseUser getUserByName(BaseUser user);
 }

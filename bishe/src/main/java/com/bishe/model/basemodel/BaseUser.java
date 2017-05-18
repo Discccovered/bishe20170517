@@ -9,6 +9,7 @@ public class BaseUser {
 	private String status;
 	private double balance;
 	private String file;
+	private String usertypename;
 	
 	public String getUserid() {
 		return userid;
@@ -82,6 +83,14 @@ public class BaseUser {
 				+ (usertype != null ? "usertype=" + usertype + ", " : "") + "credit=" + credit + ", "
 				+ (status != null ? "status=" + status + ", " : "") + "balance=" + balance + ", "
 				+ (file != null ? "file=" + file : "") + "]";
+	}
+
+	public String getUsertypename() {
+		return usertypename;
+	}
+
+	public void setUsertypename(String usertypename) {
+		this.usertypename = usertypename;
 	}
 
 

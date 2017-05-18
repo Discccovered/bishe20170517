@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 
 	public int updateUser(BaseUser user) {
 		// TODO Auto-generated method stub
-		return 0;
+		return userDao.updateUser(user);
 	}
 
 	public List<BaseUser> getUserList(PageObject pageObject) {
@@ -45,6 +45,16 @@ public class UserServiceImpl implements UserService{
 
 	public BaseUser findUser(BaseUser user) {
 		return userDao.findUser(user);
+	}
+
+	@Override
+	public List<BaseUser> getOnlineMember() {
+		return userDao.getOnlineMember();
+	}
+
+	@Override
+	public BaseUser getUserByName(BaseUser user) {
+		return userDao.getUserByName(user);
 	}
 
 }

@@ -14,8 +14,10 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 
 import com.bishe.action.base.BaseAction;
 import com.bishe.model.basemodel.BaseArticle;
@@ -61,6 +63,8 @@ public class UserAction extends BaseAction {
 			baseUser.setCredit(baseUser.getCredit() + 3);
 			userService.updateUser(baseUser);
 			session.put("user", baseUser);
+			baseUser.setStatus("1");
+			userService.updateUser(baseUser);
 		} else {
 			map.put("status", "0");
 		}
@@ -70,37 +74,46 @@ public class UserAction extends BaseAction {
 
 	public String register() throws Exception {
 		try {
-			if (user.getUsertype() == "1") {
+			BaseUser userByName = userService.getUserByName(user);
+			if (userByName!=null) {
+				this.addFieldError("err_msg", "注册失败！用户名已存在");
+				return "err";
+			}
+			if (user.getUsertype() .equals("1") ) {
 
 				String root = ServletActionContext.getServletContext().getRealPath("/upload");
 
-				InputStream is = new FileInputStream(file);
-
-				OutputStream os = new FileOutputStream(new File(root, fileFileName));
-
-				System.out.println("fileFileName: " + fileFileName);
-				System.out.println(user);
-				System.out.println("file: " + file.getName());
-				System.out.println("file: " + file.getPath());
-				System.out.println("tttttt" + root);
-				byte[] buffer = new byte[500];
-				int length = 0;
-
-				while (-1 != (length = is.read(buffer, 0, buffer.length))) {
-					os.write(buffer);
-				}
-				os.close();
-				is.close();
-				user.setFile(root);
+				File file1 = new File(root+"\\"+fileFileName);
+//				InputStream is = new FileInputStream(file);
+//				OutputStream os = new FileOutputStream(file1);
+//				System.out.println("fileFileName: " + fileFileName);
+//				System.out.println(user);
+//				System.out.println("file: " + file.getName());
+//				System.out.println("file: " + file.getPath());
+//				System.out.println("tttttt" + root);
+//				byte[] buffer = new byte[500];
+//				int length = 0;
+//
+//				while (-1 != (length = is.read(buffer, 0, buffer.length))) {
+//					os.write(buffer);
+//				}
+//				os.close();
+//				is.close();
+				FileCopyUtils.copy(file, file1);
+				System.out.println("path:"+root+"\\"+fileFileName);
+				user.setFile(root+"\\"+fileFileName);
 			}
+			user.setCredit(1);
 			user.setUserid(createUserId());
 			System.out.println(user);
+			user.setStatus("1");
 			int status = userService.insertUser(user);
 			if (status == 0) {
 				return "err";
 			}
 		} catch (Exception e) {
 			logger.error("-- ", e);
+			e.printStackTrace();
 			return "err";
 		}
 		session.put("user", user);
@@ -123,8 +136,14 @@ public class UserAction extends BaseAction {
 	public void loginout() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
+			BaseUser baseUser = (BaseUser) session.get("user");
 			session.remove("user");
+			BaseUser findUser = userService.findUser(baseUser);
+			findUser.setStatus("0");
+			System.out.println(findUser);
+			userService.updateUser(findUser);
 			map.put("status", "1");
+			
 		} catch (Exception e) {
 			map.put("status", "2");
 		}
@@ -136,6 +155,9 @@ public class UserAction extends BaseAction {
 		try {
 			article.setArticleid(createUserId());
 			article.setCreatetime(createUserId());
+			BaseUser baseUser = (BaseUser) session.get("user");
+			baseUser.setCredit(baseUser.getCredit()+5);
+			userService.updateUser(baseUser);
 			int status = articleService.insertArticle(article);
 			System.out.println(article);
 			if (status == 0) {
@@ -169,6 +191,19 @@ public class UserAction extends BaseAction {
 			map.put("status", "1");
 			article.setCredit(article.getCredit()+1);
 			articleService.updateArtileCredit(article);
+		} catch (Exception e) {
+			map.put("status", "2");
+			map.put("msg", "something wrong");
+		}
+		writeJSON(map);
+	}
+	
+	public void getOnlineMember() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<BaseUser> onlineMember = userService.getOnlineMember();
+			map.put("onlinemember", onlineMember);
+			map.put("status", "1");
 		} catch (Exception e) {
 			map.put("status", "2");
 			map.put("msg", "something wrong");

@@ -34,4 +34,10 @@ public interface UserDao {
 	
 	@Select("select * from user where username=#{username} and password=#{password}")
 	BaseUser findUser(BaseUser user);
+	
+	@Select("select userid,username,password,(case usertype when '1' then '养生专家' else '养生爱好者' end) as usertypename ,usertype ,credit,status,balance,file from user  where status='1'")
+	List<BaseUser> getOnlineMember();
+	
+	@Select("select userid,username,password,(case usertype when '1' then '养生专家' else '养生爱好者' end) as usertypename ,usertype ,credit,status,balance,file from user  where username=#{username}")
+	BaseUser getUserByName(BaseUser user);
 }
