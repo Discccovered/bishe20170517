@@ -1,0 +1,15 @@
+.navbar {
+  height: 51px;
+  min-height: 50px;
+  background-color: #3A8EFE;
+  margin: 0;
+}
+.navbar-right li a *{
+  font-size: 16px;
+  color: #FCFFFF;
+}
+
+.navbar-right li img{
+	position: absolute;
+	right:0;
+}

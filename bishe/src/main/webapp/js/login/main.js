@@ -81,8 +81,10 @@ $(function() {
 				console.log(data);
 				if(data.status=="1"){
 					window.location.href="index.jsp";
-				}else{
+				}else if(data.status=="0"){
 					$("#prompt").removeAttr("hidden");
+				}else{
+					alert("你的账号已被冻结");
 				}
 			}
 		});

@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+/**
+ * 透明层
+ */
+.jquery-loading-mask {	
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	display: none;
+	z-index: 99998;
+	background: #ccc;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+}
+
+/**
+ * 消息提示层
+ */
+.jquery-loading-mask-msg {
+	font-size: 12px;
+	width: auto;
+	height: 16px;
+	color: #000;
+	border-style: solid;
+    border-width: 2px;
+	border-color: #49A349;
+	padding: 12px 5px 10px 30px;	
+	display: none;
+	z-index: 99999;	
+}
+
+.jquery-loading-mask-msg {	
+	background: #ffffff url('images/loading.gif') no-repeat scroll 5px center;
+}

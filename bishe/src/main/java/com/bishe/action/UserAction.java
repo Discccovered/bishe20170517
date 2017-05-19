@@ -53,6 +53,11 @@ public class UserAction extends BaseAction {
 		Map<String, Object> map = new HashMap<String, Object>();
 		BaseUser baseUser = userService.findUser(user);
 		if (baseUser != null) {
+			if (baseUser.getStatus().equals("3")) {
+				map.put("status", "2");
+				writeJSON(map);
+				return;
+			}
 			map.put("status", "1");
 			baseUser.setCredit(baseUser.getCredit() + 3);
 			userService.updateUser(baseUser);
