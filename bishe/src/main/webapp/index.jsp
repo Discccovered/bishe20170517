@@ -23,6 +23,13 @@ body {
 	margin: 0;
 }
 
+#foottitle{
+	line-height: 1.5;
+    color: #e26228;
+    margin: 5px 0 10px 0;
+    font-size: 1.53077em;
+}
+
 #logo {
 	width: 100%;
 	height: 260px;
@@ -57,16 +64,16 @@ label.error {
 
 <!-- Bootstrap css -->
 <link type="text/css" rel='stylesheet' href="css/bootstrap.min.css">
-<link type="text/css" rel='stylesheet' href="css/font-awesome.min.css">
-
+<!-- <link type="text/css" rel='stylesheet' href="css/font-awesome.min.css">
+ -->
 <!-- End Bootstrap css -->
 
 
 <link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext'
+	href='css/css[1].css'
 	rel='stylesheet' type='text/css'>
 <link
-	href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+	href='css/css[2].css'
 	rel='stylesheet' type='text/css'>
 
 <link type="text/css" data-themecolor="default" rel='stylesheet'
@@ -74,51 +81,17 @@ label.error {
 
 
 <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	href="css/font-awesome.min.css">
 </head>
 <body>
 	<div class="mask-l"
 		style="background-color: #fff; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9999999;"></div>
 	<!--removed by integration-->
 	<header>
-
-		<!-- <div class="container b-header__box b-relative">
-
-    <div class="b-header-r b-right b-header-r&#45;&#45;icon">
-
-      <div class="b-top-nav-show-slide f-top-nav-show-slide b-right j-top-nav-show-slide"><i class="fa fa-align-justify"></i></div>
-      <nav class="b-top-nav f-top-nav b-right j-top-nav">
-          <ul class="b-top-nav__1level_wrap">
-    <li class="b-top-nav__1level f-top-nav__1level is-active-top-nav__1level f-primary-b"><a href="#"><i class="fa fa-home b-menu-1level-ico"></i>首页 <span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-
-    </li>
-
-    <li class="b-top-nav__1level f-top-nav__1level f-primary-b">
-        <a href="#"><i class="fa fa-picture-o b-menu-1level-ico"></i>Portfolio <span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-
-    </li>
-    <li class="b-top-nav__1level f-top-nav__1level f-primary-b">
-        <a href="#"><i class="fa fa-code b-menu-1level-ico"></i>Blog <span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-
-    </li>
-    <li class="b-top-nav__1level f-top-nav__1level f-primary-b b-top-nav-big">
-        <a href="#"><i class="fa fa-cloud-download b-menu-1level-ico"></i>Pages<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-
-    </li>
-
-    <li class="b-top-nav__1level f-top-nav__1level f-primary-b">
-        <a href="#"><i class="fa fa-folder-open b-menu-1level-ico"></i>Contact us<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span></a>
-    </li>
-
-</ul>
-
-      </nav>
-    </div>
-  </div>-->
 		<input type="hidden" id="usercontainer" value="${sessionScope.user}">
 		<div id="head">
 			<div id="headimg">
-				<img src="img/首页.jpg" id="logo" class="img-responsive">
+				<img src="img/ttt3.jpg" id="logo" class="img-responsive">
 			</div>
 			<div id="navigation">
 				<nav class="navbar navbar-default">
@@ -142,16 +115,16 @@ label.error {
 							<ul class="nav navbar-nav">
 								<li class="active"><button type="button"
 										class="btn btn-link  navbar-btn" id="shouye">
-										首页<span class="sr-only">(current)</span>
+										<i class="fa fa-home"></i>首页<span class="sr-only">(current)</span>
 									</button></li>
 								<li><button type="button" class="btn btn-link  navbar-btn"
-										id="guanyuyangsheng">关于养生</button></li>
-								<li><button type="button" class="btn btn-link  navbar-btn"	id="yangshengxinde" onclick="seachArticleWithType(this.value)" value="1">养生心得</button></li>
-								<li><button type="button" class="btn btn-link  navbar-btn"	onclick="seachArticleWithType(this.value)" value="7">新闻动态</button></li>
-								<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="2">养生保健</button></li>
+										id="guanyuyangsheng"><i class="fa fa-bars"></i>关于养生</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	id="yangshengxinde" onclick="seachArticleWithType(this.value)" value="1"><i class="fa fa-coffee"></i>养生心得</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	onclick="createNewsPage(this.value)" value="7"><i class="fa fa-info"></i>新闻动态</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="2"><i class="fa fa-cutlery"></i>养生保健</button></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
-									aria-expanded="false">四季养生 <span class="caret"></span></a>
+									aria-expanded="false"><i class="fa fa-sun-o"></i>四季养生 <span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="3">春节养生</button></li>
 										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="4">夏季养生</button></li>
@@ -159,25 +132,25 @@ label.error {
 										<li><button type="button" class="btn btn-link  navbar-btn"	 onclick="seachArticleWithType(this.value)" value="6">冬季养生</button></li>
 									</ul></li>
 									<li></li>
-								<li><button type="button" class="btn btn-link  navbar-btn"	id="chatting" onclick="chatting()" >在线咨询</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	id="chatting" onclick="chatting()" ><i class="fa fa-wechat "></i>在线咨询</button></li>
 							</ul>
 
 							<ul class="nav navbar-nav navbar-right">
 								<!-- <li><button type="button" class="btn btn-link  navbar-btn" id="register" >注册</button></li> -->
-								<li><button type="button" class="btn btn-link  navbar-btn"	id="login">登录</button></li>
+								<li><button type="button" class="btn btn-link  navbar-btn"	id="login"><i class="fa fa-sign-in"></i>登录</button></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" id="user" role="button"
-									aria-haspopup="true" aria-expanded="false"> <s:if test="#session.user!=null">${sessionScope.user.username}</s:if>
-										<s:else>请先登录</s:else> <span class="caret"></span><input
+									aria-haspopup="true" aria-expanded="false"> <s:if test="#session.user!=null"><i class="fa fa-user"></i>${sessionScope.user.username}</s:if>
+										<s:else><i class="fa fa-smile-o"></i>请先登录</s:else> <span class="caret"></span><input
 										type="hidden" value="${sessionScope.user.username}"
 										id="storeusername"></a>
 									<ul class="dropdown-menu">
-										<li class="text-center"><button
-												style="background-color: #FFF" class="btn navbar-btn" onclick="writearticle()"
-												id="writearticle"><i class="icon-pencil"></i>写文章</button></li>
+										<li class="text-center"><a
+												onclick="writearticle()"
+												id="writearticle"><i class="fa fa-pencil"></i>写文章</a></li>
 										<li class="text-center"><button
 												style="background-color: #FFF" class="btn navbar-btn" onclick="loginout()"
-												id="loginout">注销</button></li>
+												id="loginout"><i class="fa fa-sign-out"></i>注销</button></li>
 									</ul></li>
 							</ul>
 						</div>
@@ -190,94 +163,15 @@ label.error {
 	</header>
 	<div class="j-menu-container"></div>
 
-	<!--div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page">
-  <div class="b-inner-page-header__content">
-    <div class="container">
-      <h1 class="f-primary-l c-default">Blog Listing Left Sidebar</h1>
-    </div>
-  </div>
-</div>-->
+	
 	<div class="l-main-container">
 
-		<!-- <div class="b-breadcrumbs f-breadcrumbs">
-        <div class="container">
-            <ul>
-                <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-                <li><i class="fa fa-angle-right"></i><a href="#">Blog</a></li>
-                <li><i class="fa fa-angle-right"></i><span>Listing Left Sidebar</span></li>
-            </ul>
-        </div>
-    </div> -->
+		
 
 		<div class="l-inner-page-container">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9 col-md-push-3" id="right_page">
-						<!--  <div class="b-blog-listing__block">
-                        <div class="b-blog-listing__block-top">
-                            <div class=" view view-sixth">
-    <img data-retina="" src="img/blog/blog_listing.jpg" alt="">
-
-</div>
-                        </div>
-                        <div class="b-infoblock-with-icon b-blog-listing__infoblock">
-                            <a href="#" class="b-infoblock-with-icon__icon f-infoblock-with-icon__icon fade-in-animate hidden-xs">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                            <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">
-                                <a href="#" class="f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr">
-                                    Mauris ac risus neque, ut pulvinar risus
-                                </a>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">
-                                    By <a href="#" class="f-more">Stephen Brock</a> In <a href="#" class="f-more">Lifestyle</a>, <a href="#" class="f-more">Photography</a> Posted May 24th, 2013
-                                    <a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-comment"></i>12 Comments</a>
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text">
-                                    Pendisse blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat, a placerat tellus laoreet eget. Blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis.
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text">
-                                    <a href="#" class="f-more f-primary-b">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-blog-listing__block">
-                        <div class="b-video-player b-blog-listing__block-top">
-                            <iframe src="http://player.vimeo.com/video/81801013?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" width="870" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                        </div>
-                        <div class="b-infoblock-with-icon b-blog-listing__infoblock">
-                            <a href="#" class="b-infoblock-with-icon__icon f-infoblock-with-icon__icon fade-in-animate hidden-xs">
-                                <i class="fa fa-video-camera"></i>
-                            </a>
-                            <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">
-                                <a href="#" class="f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr">
-                                    This Is Vimeo video post
-                                </a>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">
-                                    By <a href="#" class="f-more">Stephen Brock</a> In <a href="#" class="f-more">Lifestyle</a>, <a href="#" class="f-more">Photography</a> Posted May 24th, 2013
-                                    <a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-comment"></i>12 Comments</a>
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text">
-                                    Pendisse blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat, a placerat tellus laoreet eget. Blandit ligula turpis, ac convallis risus fermentum non. Duis vestibulum quis.
-                                </div>
-                                <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text">
-                                    <a href="#" class="f-more f-primary-b">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="b-pagination f-pagination">
-    <ul>
-        <li><a href="#">First</a></li>
-        <li><a class="prev" href="#"><i class="fa fa-angle-left"></i></a></li>
-        <li class="is-active-pagination"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a class="next" href="#"><i class="fa fa-angle-right"></i></a></li>
-        <li><a href="#">Last</a></li>
-    </ul>
-</div> -->
 					</div>
 					<div class="visible-xs-block visible-sm-block b-hr"></div>
 					<div class="col-md-3 col-md-pull-9">
@@ -297,35 +191,6 @@ label.error {
 									<h4
 										class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">当前在线</h4>
 									<ul id="onlinelist">
-										
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Smart Phone</a> <span
-											class="b-categories-filter_count f-categories-filter_count">23</span>
-										</li>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Latop</a> <span
-											class="b-categories-filter_count f-categories-filter_count">12</span>
-										</li>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Apple Store</a> <span
-											class="b-categories-filter_count f-categories-filter_count">23</span>
-										</li>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Wordpress Theme</a> <span
-											class="b-categories-filter_count f-categories-filter_count">12</span>
-										</li>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Web Design</a> <span
-											class="b-categories-filter_count f-categories-filter_count">23</span>
-										</li>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Sport</a> <span
-											class="b-categories-filter_count f-categories-filter_count">12</span>
-										</li>
-										<li><a class="f-categories-filter_name" href="#"><i
-												class="fa fa-plus"></i> Fashion</a> <span
-											class="b-categories-filter_count f-categories-filter_count">23</span>
-										</li>
 									</ul>
 								</div>
 							</div>
@@ -333,11 +198,11 @@ label.error {
 								<h4
 									class="f-primary-b b-h4-special  f-h4-special--gray f-h4-special">热门文章</h4>
 
-								<div
+								<div 
 									class="b-blog-short-post b-blog-short-post--img-hover-bordered b-blog-short-post--w-img f-blog-short-post--w-img row">
-									<div
+									<div id="hotarticle"
 										class="b-blog-short-post b-blog-short-post--img-hover-bordered b-blog-short-post--w-img f-blog-short-post--w-img row">
-										<div
+										<div 
 											class="b-blog-short-post--popular col-md-12  col-xs-12 f-primary-b">
 											<div class="b-blog-short-post__item_img">
 												<a href="#"><img data-retina
@@ -425,23 +290,6 @@ label.error {
 									</div>
 								</div>
 							</div>
-							<!--<div class="col-md-12">
-        <h4 class="f-primary-b b-h4-special f-h4-special&#45;&#45;gray f-h4-special">tags cloud</h4>
-        <div>
-    <a class="f-tag b-tag" href="#">Dress</a>
-    <a class="f-tag b-tag" href="#">Mini</a>
-    <a class="f-tag b-tag" href="#">Skate animal</a>
-    <a class="f-tag b-tag" href="#">Lorem ipsum</a>
-    <a class="f-tag b-tag" href="#">literature</a>
-    <a class="f-tag b-tag" href="#">Baroque</a>
-    <a class="f-tag b-tag" href="#">Dress</a>
-    <a class="f-tag b-tag" href="#">Mini</a>
-    <a class="f-tag b-tag" href="#">Skate animal</a>
-    <a class="f-tag b-tag" href="#">Lorem ipsum</a>
-    <a class="f-tag b-tag" href="#">literature</a>
-    <a class="f-tag b-tag" href="#">Baroque</a>
-</div>
-    </div>-->
 						</div>
 					</div>
 				</div>
@@ -453,107 +301,41 @@ label.error {
 	</div>
 
 	<footer>
-		<!--  <div class="b-footer-primary">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-xs-12 f-copyright b-copyright">Copyright © 2014 - All Rights Reserved .More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
-            <div class="col-sm-8 col-xs-12">
-                <div class="b-btn f-btn b-btn-default b-right b-footer__btn_up f-footer__btn_up j-footer__btn_up">
-                    <i class="fa fa-chevron-up"></i>
-                </div>
-                <nav class="b-bottom-nav f-bottom-nav b-right hidden-xs">
-                    <ul>
-                        <li><a href="#">Homepage</a></li>
-                        <li class="is-active-bottom-nav"><a href="#">Headers</a></li>
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li><a href="#">Shortcode</a></li>
-                        <li><a href="#">Shop</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>-->
+		
 		<div class="container">
 			<div class="b-footer-secondary row">
+				<div class="col-md-12 col-sm-12 col-xs-12 f-center b-footer-logo-containter">
+					<div class="b-footer-logo-text f-footer-logo-text">
+						<h2 class="f-primary-b" id="foottitle">联系方式</h2>
+					</div>
+				</div>
 				<div
-					class="col-md-3 col-sm-12 col-xs-12 f-center b-footer-logo-containter">
+					class="col-md-4 col-sm-12 col-xs-12 f-center b-footer-logo-containter">
 
 					<div class="b-footer-logo-text f-footer-logo-text">
-						<p>Mauris rhoncus pretium porttitor. Cras scelerisque commodo
-							odio.</p>
-						<div class="b-btn-group-hor f-btn-group-hor">
-							<a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
-								<i class="fa fa-twitter"></i>
-							</a> <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
-								<i class="fa fa-facebook"></i>
-							</a> <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
-								<i class="fa fa-dribbble"></i>
-							</a> <a href="#" class="b-btn-group-hor__item f-btn-group-hor__item">
-								<i class="fa fa-behance"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12 col-xs-12">
-					<h4 class="f-primary-b">Latest blog posts</h4>
-					<div class="b-blog-short-post row">
-						<div
-							class="b-blog-short-post__item col-md-12 col-sm-4 col-xs-12 f-primary-b">
-							<div
-								class="b-blog-short-post__item_text f-blog-short-post__item_text">
-								<a href="#">Amazing post with all the goodies</a>
-							</div>
-							<div
-								class="b-blog-short-post__item_date f-blog-short-post__item_date">
-								March 23, 2013</div>
-						</div>
-						<div
-							class="b-blog-short-post__item col-md-12 col-sm-4 col-xs-12 f-primary-b">
-							<div
-								class="b-blog-short-post__item_text f-blog-short-post__item_text">
-								<a href="#">Amazing post with all the goodies</a>
-							</div>
-							<div
-								class="b-blog-short-post__item_date f-blog-short-post__item_date">
-								March 23, 2013</div>
-						</div>
-						<div
-							class="b-blog-short-post__item col-md-12 col-sm-4 col-xs-12 f-primary-b">
-							<div
-								class="b-blog-short-post__item_text f-blog-short-post__item_text">
-								<a href="#">Amazing post with all the goodies</a>
-							</div>
-							<div
-								class="b-blog-short-post__item_date f-blog-short-post__item_date">
-								March 23, 2013</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12 col-xs-12">
-					<h4 class="f-primary-b">contact info</h4>
-					<div class="b-contacts-short-item-group">
+					<h4 class="f-primary-b">Address</h4>
 						<div class="b-contacts-short-item col-md-12 col-sm-4 col-xs-12">
-							<div
-								class="b-contacts-short-item__icon f-contacts-short-item__icon f-contacts-short-item__icon_lg b-left">
+							<div class="b-contacts-short-item__icon f-contacts-short-item__icon f-contacts-short-item__icon_lg b-left">
 								<i class="fa fa-map-marker"></i>
 							</div>
 							<div class="b-remaining f-contacts-short-item__text">
-								Frexy Studio<br /> 1234 Street Name, City Name,<br /> United
-								States.<br />
+								中国安徽省淮南市安徽理工大学
 							</div>
 						</div>
-						<div class="b-contacts-short-item col-md-12 col-sm-4 col-xs-12">
-							<div
-								class="b-contacts-short-item__icon f-contacts-short-item__icon b-left f-contacts-short-item__icon_md">
-								<i class="fa fa-skype"></i>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12 f-center">
+					<h4 class="f-primary-b">Phone</h4>
+					<div class="b-contacts-short-item col-md-12 col-sm-4 col-xs-12">
+							<div class="b-contacts-short-item__icon f-contacts-short-item__icon b-left f-contacts-short-item__icon_md">
+								<i class="fa fa-phone"></i>
 							</div>
-							<div
-								class="b-remaining f-contacts-short-item__text f-contacts-short-item__text_phone">
-								Skype: ask.company</div>
+							<div class="b-remaining f-contacts-short-item__text f-contacts-short-item__text_phone">
+								0554-1234567</div>
 						</div>
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12 f-center">
+					<h4 class="f-primary-b">EMAIL</h4>
 						<div class="b-contacts-short-item col-md-12 col-sm-4 col-xs-12">
 							<div
 								class="b-contacts-short-item__icon f-contacts-short-item__icon b-left f-contacts-short-item__icon_xs">
@@ -564,49 +346,7 @@ label.error {
 								<a href="mailto:frexystudio@gmail.com">mail@example.com</a>
 							</div>
 						</div>
-					</div>
 				</div>
-				<!--<div class="col-md-3 col-sm-12 col-xs-12 ">
-        <h4 class="f-primary-b">photo stream</h4>
-          <div class="b-short-photo-items-group">
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_1.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_1.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_2.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_2.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_3.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_3.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_4.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_4.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_5.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_5.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_6.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_6.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_7.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_7.jpg" alt=""/></a>
-    </div>
-    <div class="b-column">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_8.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_8.jpg" alt=""/></a>
-    </div>
-    <div class="b-column hidden-xs">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_9.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_9.jpg" alt=""/></a>
-    </div>
-    <div class="b-column hidden-sm hidden-xs">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_10.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_10.jpg" alt=""/></a>
-    </div>
-    <div class="b-column hidden-sm hidden-xs">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_11.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_11.jpg" alt=""/></a>
-    </div>
-    <div class="b-column hidden-sm hidden-xs">
-        <a class="b-short-photo-item fancybox" href="img/gallery/sm/gallery_12.jpg" title="photo stream" rel="footer-group"><img width="62" height="62" data-retina src="img/gallery/sm/gallery_12.jpg" alt=""/></a>
-    </div>
-</div>
-      </div>-->
 			</div>
 		</div>
 	</footer>

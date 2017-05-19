@@ -27,21 +27,56 @@ $(function() {
 		console.log("ttt");
 	});
 
-/*	var pattern = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/;
-	var formatedDate = "20170517150821".replace(pattern, '$1-$2-$3 $4:$5:$6');
-	console.log(formatedDate);
-	console.log(formatdate("20170517150821"));*/
-	/*
-	 * $("#writearticle").click(function(){ console.log("write article");
-	 * $("#right_page").load("edit.jsp"); })
-	 */
+
 	console.log($("#usercontainer").val());
 	modifyHtml();
 	console.log($("#articleparagraph").val());
 	
 	$("#onlinelist").html(getOnlineMember());
-	
+	forHotArticle();
+	$("[data-toggle='popover']").popover({delay: { "show": 300, "hide": 100 }});
 })
+
+function createNewsPage(data){
+	$.ajax({
+		type:"post",
+		data:{"type":data},
+		dataType:"json",
+		url:"/bishe/user/userAction_getNewsArticle.action",
+		async: false,
+		cache : false,
+		success:function(data1){
+			/*$("#right_page").load("news.jsp");
+			console.log($("#findnewsarticle"));
+			$("#findnewsarticle").html("<h1>testing</h1>");*/
+			$.get("news.jsp",function(data){
+				console.log(data1);
+				var html = formHtml(data1);
+				$("#right_page").html(data);
+				$("#findnewsarticle").html(html);
+			});
+		}
+	})
+}
+
+function forHotArticle(){
+	$.ajax({
+		type:"post",
+		data:{},
+		dataType:"json",
+		url:"/bishe/user/userAction_getHotArticle.action",
+		async: false,
+		cache : false,
+		success:function(data){
+			console.log(data);
+			var temp="";
+			for(var i=0;i<data.articleList.length;i++){
+				temp+='	<div class="b-blog-short-post--popular col-md-12  col-xs-12 f-primary-b"><div class="b-blog-short-post__item_img"><a ><img data-retina	src="img/gallery/sm/gallery_1.jpg" alt="" /></a></div><div class="b-remaining"><div	class="b-blog-short-post__item_text f-blog-short-post__item_text"><a style="cursor:pointer;" onclick="searchArticleById('+data.articleList[i].articleid+')">'+data.articleList[i].title+'</a>	</div>	<div class="b-blog-short-post__item_date f-blog-short-post__item_date f-primary-it">'+formatdate(data.articleList[i].createtime)+'</div>	</div>	</div>';
+			}
+			$("#hotarticle").html(temp);
+		}
+	})
+}
 
 function getOnlineMember(){
 	var result;
@@ -58,7 +93,11 @@ function getOnlineMember(){
 			console.log(data);
 			var html ="";
 			for(var i=0;i<data.onlinemember.length;i++){
-				html+= '<li><a class="f-categories-filter_name" ><i	class="icon-user-md"></i> '+data.onlinemember[i].username+'</a> <span class="b-categories-filter_count f-categories-filter_count">'+data.onlinemember[i].credit+'</span></li>';
+				if(data.onlinemember[i].usertype=='1'){
+					html+= '<li><a tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" title="'+data.onlinemember[i].username+'         '+data.onlinemember[i].usertypename+'" data-content="用户积分:'+data.onlinemember[i].credit+'"  class="f-categories-filter_name"  ><i class="fa fa-user-md"></i> '+data.onlinemember[i].username+'</a> <span class="b-categories-filter_count f-categories-filter_count">'+data.onlinemember[i].credit+'</span></li>';
+				}else{
+					html+= '<li><a tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" title="'+data.onlinemember[i].username+'         '+data.onlinemember[i].usertypename+'" data-content="用户积分:'+data.onlinemember[i].credit+'"  class="f-categories-filter_name"   ><i class="fa fa-user"></i> '+data.onlinemember[i].username+'</a> <span class="b-categories-filter_count f-categories-filter_count">'+data.onlinemember[i].credit+'</span></li>';
+				}
 			}
 			result=html;
 		}
@@ -116,30 +155,6 @@ function searchArctile() {
 		cache : false,
 		success : function(data) {
 			console.log(data);
-			/*var str = "";
-		    for(var i=0;i<data.articleList.length;i++){
-		    	var dat = formatdate(data.articleList[i].createtime);
-
-		     str += '<div class="b-blog-listing__block">' +
-		                '<div class="b-blog-listing__block-top">    ' +
-		                    '<h4><button class="btn btn-link" onclick="searchArticleById('+data.articleList[i].articleid+')">'+data.articleList[i].title+'</button><h4>    ' +
-		                '</div>   ' +
-		                '<div class="b-infoblock-with-icon b-blog-listing__infoblock">   ' +
-		                    ' <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">  ' +
-		                        ' <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">   ' +
-		                            'By <button onclick="searchArticleWithAuthor('+data.articleList[i].author+')"  class="btn btn-link f-more">'+data.articleList[i].author+'</button> In <button onclick="seachArticleWithType('+data.articleList[i].type+')"  class="btn btn-link f-more">'+data.articleList[i].type+'</button> ' +
-		                             '发表时间 '+formatdate(data.articleList[i].createtime)+
-		                             '<a href="#" class="f-more b-blog-listing__additional-text f-primary"><i class="fa fa-comment"></i>'+data.articleList[i].credit+' Comments</a>' +
-		                        '</div>' +
-		                    '<div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text" style=" height:20px;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;"> ' +
-		        data.articleList[i].paragraph+'</div>' +
-		                        '<div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text"> ' +
-		                            '  <button onclick="searchArticleById('+data.articleList[i].articleid+')" class="btn btn-link f-more f-primary-b">查看全文</button>' +
-		                        ' </div>' +
-		                    '</div>' +
-		                '</div>' +
-		        '</div>';
-		    }*/
 			$("#right_page").html(formHtml(data));
 		}
 	});
@@ -302,6 +317,7 @@ function insertArticle() {
 					alert(data.msg);
 				}
 				$("#myModal").modal("hide");
+				$("#updatebutton").attr("data-dismiss","modal");
 			}
 		});
 	}

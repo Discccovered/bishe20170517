@@ -45,8 +45,12 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public int updateArtileCredit(BaseArticle article) {
-		// TODO Auto-generated method stub
 		return articleDao.updateArtileCredit(article);
+	}
+
+	@Override
+	public List<BaseArticle> searchHotArticle() {
+		return articleDao.searchHotArticle();
 	}
 	
 	

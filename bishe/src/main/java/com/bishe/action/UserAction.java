@@ -1,20 +1,14 @@
 package com.bishe.action;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -28,7 +22,7 @@ import com.bishe.service.UserService;
 @Controller
 public class UserAction extends BaseAction {
 
-	public static final Log logger = LogFactory.getLog(UserAction.class);
+	public static final Logger logger = Logger.getLogger(UserAction.class);
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 
@@ -75,33 +69,33 @@ public class UserAction extends BaseAction {
 	public String register() throws Exception {
 		try {
 			BaseUser userByName = userService.getUserByName(user);
-			if (userByName!=null) {
+			if (userByName != null) {
 				this.addFieldError("err_msg", "注册失败！用户名已存在");
 				return "err";
 			}
-			if (user.getUsertype() .equals("1") ) {
+			if (user.getUsertype().equals("1")) {
 
 				String root = ServletActionContext.getServletContext().getRealPath("/upload");
 
-				File file1 = new File(root+"\\"+fileFileName);
-//				InputStream is = new FileInputStream(file);
-//				OutputStream os = new FileOutputStream(file1);
-//				System.out.println("fileFileName: " + fileFileName);
-//				System.out.println(user);
-//				System.out.println("file: " + file.getName());
-//				System.out.println("file: " + file.getPath());
-//				System.out.println("tttttt" + root);
-//				byte[] buffer = new byte[500];
-//				int length = 0;
-//
-//				while (-1 != (length = is.read(buffer, 0, buffer.length))) {
-//					os.write(buffer);
-//				}
-//				os.close();
-//				is.close();
+				File file1 = new File(root + "\\" + fileFileName);
+				// InputStream is = new FileInputStream(file);
+				// OutputStream os = new FileOutputStream(file1);
+				// System.out.println("fileFileName: " + fileFileName);
+				// System.out.println(user);
+				// System.out.println("file: " + file.getName());
+				// System.out.println("file: " + file.getPath());
+				// System.out.println("tttttt" + root);
+				// byte[] buffer = new byte[500];
+				// int length = 0;
+				//
+				// while (-1 != (length = is.read(buffer, 0, buffer.length))) {
+				// os.write(buffer);
+				// }
+				// os.close();
+				// is.close();
 				FileCopyUtils.copy(file, file1);
-				System.out.println("path:"+root+"\\"+fileFileName);
-				user.setFile(root+"\\"+fileFileName);
+				System.out.println("path:" + root + "\\" + fileFileName);
+				user.setFile(root + "\\" + fileFileName);
 			}
 			user.setCredit(1);
 			user.setUserid(createUserId());
@@ -143,20 +137,27 @@ public class UserAction extends BaseAction {
 			System.out.println(findUser);
 			userService.updateUser(findUser);
 			map.put("status", "1");
-			
+
 		} catch (Exception e) {
 			map.put("status", "2");
 		}
 		writeJSON(map);
 	}
 
+	public void getNewsArticle() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BaseArticle> seachArticleWithType = articleService.seachArticleWithType(type);
+		map.put("articleList", seachArticleWithType);
+		writeJSON(map);
+	}
+	
 	public void write() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			article.setArticleid(createUserId());
 			article.setCreatetime(createUserId());
 			BaseUser baseUser = (BaseUser) session.get("user");
-			baseUser.setCredit(baseUser.getCredit()+5);
+			baseUser.setCredit(baseUser.getCredit() + 5);
 			userService.updateUser(baseUser);
 			int status = articleService.insertArticle(article);
 			System.out.println(article);
@@ -189,7 +190,7 @@ public class UserAction extends BaseAction {
 			BaseArticle article = articleService.searchArticleById(articleid);
 			map.put("article", article);
 			map.put("status", "1");
-			article.setCredit(article.getCredit()+1);
+			article.setCredit(article.getCredit() + 1);
 			articleService.updateArtileCredit(article);
 		} catch (Exception e) {
 			map.put("status", "2");
@@ -197,8 +198,21 @@ public class UserAction extends BaseAction {
 		}
 		writeJSON(map);
 	}
-	
-	public void getOnlineMember() throws Exception{
+
+	public void getHotArticle() throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+
+			List<BaseArticle> searchHotArticle = articleService.searchHotArticle();
+			map.put("articleList", searchHotArticle);
+			map.put("status", "1");
+		} catch (Exception e) {
+			logger.error("-----------", e);
+		}
+		writeJSON(map);
+	}
+
+	public void getOnlineMember() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			List<BaseUser> onlineMember = userService.getOnlineMember();
@@ -210,8 +224,8 @@ public class UserAction extends BaseAction {
 		}
 		writeJSON(map);
 	}
-	
-	public void seachArticleWithType() throws Exception{
+
+	public void seachArticleWithType() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			List<BaseArticle> seachArticleWithType = articleService.seachArticleWithType(type);

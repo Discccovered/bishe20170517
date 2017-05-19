@@ -18,6 +18,9 @@ public interface ArticleDao {
 	@Select("select a.*,t.typename from article a left join types t on a.type=t.articletype  where a.title like CONCAT('%',#{pattern},'%') or a.author like CONCAT('%',#{pattern},'%') or a.paragraph like CONCAT('%',#{pattern},'%') order by credit")
 	List<BaseArticle> searchArticle(String pattern);
 	
+	@Select("select * from article order by credit desc limit 5")
+	List<BaseArticle> searchHotArticle();
+	
 	@Insert("insert into article(articleid, title, author, createtime, paragraph, status,credit, picture, type) values(#{articleid},#{title},#{author},#{createtime},#{paragraph},#{status},#{credit},#{picture},#{type})")
 	int insertArticle(BaseArticle article);
 	
