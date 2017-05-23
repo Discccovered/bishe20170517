@@ -23,7 +23,7 @@ public interface UserDao {
 	@Update("update user    set userid = #{userid},      username = #{username},      password = #{password},      usertype = #{usertype},      credit = #{credit},      status = #{status},      balance = #{balance},      file = #{file} where userid=#{userid}")
 	int updateUser(BaseUser user);
 	
-	@Select("select * from user order by credit desc limit #{rownum} offset #{skip}")
+	@Select("select userid,username,usertype,credit,status,password,balance,file,(case usertype when '1' then '养生专家' when '0' then '管理员' else '养生爱好者' end) as usertypename,(case status when '3' then '冻结' else '正常' end) as statusname from user  order by credit desc limit #{rownum} offset #{skip}")
 	List<BaseUser> getUserList(PageObject pageObject);
 	
 	@Select("select * from user where userid=#{id}")
@@ -35,9 +35,16 @@ public interface UserDao {
 	@Select("select * from user where username=#{username} and password=#{password}")
 	BaseUser findUser(BaseUser user);
 	
-	@Select("select userid,username,password,(case usertype when '1' then '养生专家' else '养生爱好者' end) as usertypename ,usertype ,credit,status,balance,file from user  where status='1' limit 15")
+	@Select("select userid,username,password,(case usertype when '1' then '养生专家' when '0' then '管理员' else '养生爱好者' end) as usertypename ,usertype ,credit,status,balance,file from user  where status='1' limit 15")
 	List<BaseUser> getOnlineMember();
 	
-	@Select("select userid,username,password,(case usertype when '1' then '养生专家' else '养生爱好者' end) as usertypename ,usertype ,credit,status,balance,file from user  where username=#{username}")
+	@Select("select userid,username,password,(case usertype when '1' then '养生专家' when '0' then '管理员' else '养生爱好者' end) as usertypename ,usertype ,credit,status,balance,file from user  where username=#{username}")
 	BaseUser getUserByName(BaseUser user);
+	
+	@Select("select count(userid) from user")
+	int getRowNum();
+
+	
+	@Update("update user set status='3' where userid=#{userid}")
+	int forbidUserById(String userid);
 }

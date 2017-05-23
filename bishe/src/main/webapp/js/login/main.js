@@ -83,6 +83,8 @@ $(function() {
 					window.location.href="index.jsp";
 				}else if(data.status=="0"){
 					$("#prompt").removeAttr("hidden");
+				}else if(data.status=="2"){
+					window.location.href="admin/table.jsp";
 				}else{
 					alert("你的账号已被冻结");
 				}

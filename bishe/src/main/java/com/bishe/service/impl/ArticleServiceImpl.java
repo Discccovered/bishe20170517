@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bishe.dao.ArticleDao;
 import com.bishe.model.basemodel.BaseArticle;
+import com.bishe.model.basemodel.BaseProduct;
 import com.bishe.service.ArticleService;
+import com.bishe.util.PageObject;
 
 @Service("articleService")
 @Transactional
@@ -51,6 +53,31 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<BaseArticle> searchHotArticle() {
 		return articleDao.searchHotArticle();
+	}
+
+	@Override
+	public List<BaseArticle> getArticleList(PageObject pageObject) {
+		return articleDao.getArticleList(pageObject);
+	}
+
+	@Override
+	public int getRowNum() {
+		return articleDao.getRowNum();
+	}
+
+	@Override
+	public int deleteArticleById(String articleid) {
+		return articleDao.deleteArticleById(articleid);
+	}
+
+	@Override
+	public int alterArticleType(BaseArticle article) {
+		return articleDao.alterArticleType(article);
+	}
+
+	@Override
+	public List<BaseProduct> getTypess() {
+		return articleDao.getTypes();
 	}
 	
 	

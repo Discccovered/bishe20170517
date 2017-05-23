@@ -13,13 +13,13 @@
 		<title>login</title>
 		<!--用百度的静态资源库的cdn安装bootstrap环境-->
 		<!-- Bootstrap 核心 CSS 文件 -->
-		<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--font-awesome 核心我CSS 文件-->
-		<link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
 		<!-- 在bootstrap.min.js 之前引入 -->
-		<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="admin/common/plugin/jquery-3.2.1.min.js"></script>
 		<!-- Bootstrap 核心 JavaScript 文件 -->
-		<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<!--jquery.validate-->
 		<script type="text/javascript" src="js/login/jquery.validate.min.js" ></script>
 		<script type="text/javascript" src="js/message.js" ></script>

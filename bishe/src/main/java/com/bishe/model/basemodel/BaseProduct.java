@@ -1,59 +1,19 @@
 package com.bishe.model.basemodel;
 
 public class BaseProduct {
-
-	private String productid;
-	private String productname;
-	private String producttype;
-	private String description;
-	private double price;
-	private int repertory;
-
-	public String getProductid() {
-		return productid;
+	private String articletype;
+	private String typename;
+	
+	public String getArticletype() {
+		return articletype;
 	}
-
-	public void setProductid(String productid) {
-		this.productid = productid;
+	public void setArticletype(String articletype) {
+		this.articletype = articletype;
 	}
-
-	public String getProductname() {
-		return productname;
+	public String getTypename() {
+		return typename;
 	}
-
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
-
-	public String getProducttype() {
-		return producttype;
-	}
-
-	public void setProducttype(String producttype) {
-		this.producttype = producttype;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public int getRepertory() {
-		return repertory;
-	}
-
-	public void setRepertory(int repertory) {
-		this.repertory = repertory;
+	public void setTypename(String typename) {
+		this.typename = typename;
 	}
 }

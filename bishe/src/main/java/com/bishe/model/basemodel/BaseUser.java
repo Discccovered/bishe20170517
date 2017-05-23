@@ -10,6 +10,7 @@ public class BaseUser {
 	private double balance;
 	private String file;
 	private String usertypename;
+	private String statusname;
 	
 	public String getUserid() {
 		return userid;
@@ -91,6 +92,14 @@ public class BaseUser {
 
 	public void setUsertypename(String usertypename) {
 		this.usertypename = usertypename;
+	}
+
+	public String getStatusname() {
+		return statusname;
+	}
+
+	public void setStatusname(String statusname) {
+		this.statusname = statusname;
 	}
 
 

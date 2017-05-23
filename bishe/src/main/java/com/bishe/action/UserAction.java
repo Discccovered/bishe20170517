@@ -8,16 +8,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 
 import com.bishe.action.base.BaseAction;
 import com.bishe.model.basemodel.BaseArticle;
+import com.bishe.model.basemodel.BaseProduct;
 import com.bishe.model.basemodel.BaseUser;
 import com.bishe.service.ArticleService;
 import com.bishe.service.UserService;
+import com.bishe.util.PageObject;
 
 @Controller
 public class UserAction extends BaseAction {
@@ -29,10 +30,12 @@ public class UserAction extends BaseAction {
 	 */
 	@Autowired
 	private UserService userService;
-
 	@Autowired
 	private ArticleService articleService;
 
+	private String userid;
+	private String rows;
+	private String page;
 	private String keyword;
 	private BaseUser user;
 	private BaseArticle article;
@@ -58,11 +61,15 @@ public class UserAction extends BaseAction {
 				writeJSON(map);
 				return;
 			}
+			boolean equals = baseUser.getUsertype().equals("0");
 			map.put("status", "1");
 			baseUser.setCredit(baseUser.getCredit() + 3);
 			userService.updateUser(baseUser);
 			session.put("user", baseUser);
 			baseUser.setStatus("1");
+			if (equals) {
+				map.put("status", "2");
+			}
 			userService.updateUser(baseUser);
 		} else {
 			map.put("status", "0");
@@ -80,27 +87,11 @@ public class UserAction extends BaseAction {
 			}
 			if (user.getUsertype().equals("1")) {
 
-				String root = ServletActionContext.getServletContext().getRealPath("/upload");
-
+				String root ="D:/zhenbishe/bishe/src/main/webapp/upload";
 				File file1 = new File(root + "\\" + fileFileName);
-				// InputStream is = new FileInputStream(file);
-				// OutputStream os = new FileOutputStream(file1);
-				// System.out.println("fileFileName: " + fileFileName);
-				// System.out.println(user);
-				// System.out.println("file: " + file.getName());
-				// System.out.println("file: " + file.getPath());
-				// System.out.println("tttttt" + root);
-				// byte[] buffer = new byte[500];
-				// int length = 0;
-				//
-				// while (-1 != (length = is.read(buffer, 0, buffer.length))) {
-				// os.write(buffer);
-				// }
-				// os.close();
-				// is.close();
 				FileCopyUtils.copy(file, file1);
 				System.out.println("path:" + root + "\\" + fileFileName);
-				user.setFile(root + "\\" + fileFileName);
+				user.setFile("upload" + "\\" + fileFileName);
 			}
 			user.setCredit(1);
 			user.setUserid(createUserId());
@@ -132,6 +123,41 @@ public class UserAction extends BaseAction {
 		writeJSON(map);
 	}
 
+	public void getArticleList() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		PageObject pageObject = new PageObject();
+		try {
+			int pagenum = 1;
+			int rownum = 10;
+			if (page != null) {
+				pagenum = Integer.parseInt(page);
+			}
+			if (rows != null) {
+				rownum = Integer.parseInt(rows);
+			}
+			pageObject.setSkip((pagenum - 1) * rownum);
+			pageObject.setRownum(rownum);
+			List<BaseArticle> userList = articleService.getArticleList(pageObject);
+			/*for (BaseUser baseUser : userList) {
+				System.out.println(baseUser);
+			}*/
+			map.put("data", userList);
+			map.put("rowNum", articleService.getRowNum());
+			map.put("status", "1");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		writeJSON(map);
+		
+	}
+	
+	public void getArticleType() throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BaseProduct> list = articleService.getTypess();
+		map.put("data", list);
+		writeJSON(map);
+ 	}
+	
 	public void loginout() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -149,6 +175,68 @@ public class UserAction extends BaseAction {
 		writeJSON(map);
 	}
 
+	public void alterArticleType() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			int status = articleService.alterArticleType(article);
+			if (status == 1) {
+				map.put("status", "1");
+			} else {
+				map.put("status", "0");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		writeJSON(map);
+	}
+	
+	public void deleteArticleById() throws Exception{
+		System.out.println("222222");
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			int status = articleService.deleteArticleById(articleid);
+			if (status == 1) {
+				map.put("status", "1");
+			} else {
+				map.put("status", "0");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		writeJSON(map);
+	}
+	
+	public void  deleteUserById() throws Exception{
+		System.out.println("222222");
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			int status = userService.deleteUserById(userid);
+			if (status == 1) {
+				map.put("status", "1");
+			} else {
+				map.put("status", "0");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		writeJSON(map);
+	}
+	
+	public void forbidUserById() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			int status = userService.forbidUserById(userid);
+			if (status == 1) {
+				map.put("status", "1");
+			} else {
+				map.put("status", "0");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		writeJSON(map);
+	}
+	
 	public void getNewsArticle() throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<BaseArticle> seachArticleWithType = articleService.seachArticleWithType(type);
@@ -230,6 +318,33 @@ public class UserAction extends BaseAction {
 		writeJSON(map);
 	}
 
+	public void getUserList() throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		PageObject pageObject = new PageObject();
+		try {
+			int pagenum = 1;
+			int rownum = 10;
+			if (page != null) {
+				pagenum = Integer.parseInt(page);
+			}
+			if (rows != null) {
+				rownum = Integer.parseInt(rows);
+			}
+			pageObject.setSkip((pagenum - 1) * rownum);
+			pageObject.setRownum(rownum);
+			List<BaseUser> userList = userService.getUserList(pageObject);
+			/*for (BaseUser baseUser : userList) {
+				System.out.println(baseUser);
+			}*/
+			map.put("data", userList);
+			map.put("rowNum", userService.getRowNum());
+			map.put("status", "1");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		writeJSON(map);
+	}
+	
 	public void seachArticleWithType() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -326,5 +441,29 @@ public class UserAction extends BaseAction {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getRows() {
+		return rows;
+	}
+
+	public void setRows(String rows) {
+		this.rows = rows;
+	}
+
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 }

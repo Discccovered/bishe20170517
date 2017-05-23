@@ -70,8 +70,8 @@ function refreshPageHtml(){
 
 function getPageHtml(){
 	var Html = "";
-	Html += '<a class="lh38" onclick="gotoPage('+1+')"><img src="../hncm/app/assets/images/first.png"/></a>';
-	Html += '<a class="lh38" onclick="pageUp()"><img src="../hncm/app/assets/images/uppage.png"/></a>';
+	Html += '<a class="lh38" onclick="gotoPage('+1+')"><img src="../bishe/admin/assets/images/first.png"/></a>';
+	Html += '<a class="lh38" onclick="pageUp()"><img src="../bishe/admin/assets/images/uppage.png"/></a>';
 	if(pageCount <= 7){
 		for(var i = 1 ; i <= pageCount; i++){
 			Html += '<a style="cursor: pointer;" id="page'+i+'" onclick="gotoPage('+i+')">'+ i + '</a>';
@@ -114,8 +114,8 @@ function getPageHtml(){
 		}
 	//	Html += '<a id="page'+ pageCount+'" onclick="gotoPage('+pageCount+')">'+ pageCount + '</a>';
 	}
-	Html += '<a onclick="pageDown()"><img src="../hncm/app/assets/images/downpage.png"/></a>';
-	Html += '<a onclick="gotoPage('+pageCount+')"><img src="../hncm/app/assets/images/last.png"/></a>';
+	Html += '<a onclick="pageDown()"><img src="../bishe/admin/assets/images/downpage.png"/></a>';
+	Html += '<a onclick="gotoPage('+pageCount+')"><img src="../bishe/admin/assets/images/last.png"/></a>';
 	Html += '<span class="nothing">共'+pageCount+'页</span>';
 	//Html += '<span class="nothing">共'+pageCount+'页，到第</span>';
 	//Html += '<input class="fanyetext" type="text" id="pageInput" value="'+ curPage +'" onkeydown="pageClick(event)" />';

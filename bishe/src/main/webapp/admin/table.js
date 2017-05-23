@@ -9,9 +9,9 @@ $('.side-menu')
 });
 function goToPage(tag) {
   if(tag == 'home') {
-    $('.right-main').load('/hncm/app/tableList/template/tmp1.jsp');
+    $('.right-main').load('/bishe/admin/tmp3.jsp');
   }
   if(tag=='company'){
-	  $('.right-main').load('/hncm/app/tableList/template/tmp2.jsp');
+	  $('.right-main').load('/bishe/admin//tmp2.jsp');
   }
 }

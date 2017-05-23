@@ -24,13 +24,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public int updateUser(BaseUser user) {
-		// TODO Auto-generated method stub
 		return userDao.updateUser(user);
 	}
 
 	public List<BaseUser> getUserList(PageObject pageObject) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.getUserList(pageObject);
 	}
 
 	public BaseUser getUserById(String id) {
@@ -39,8 +37,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public int deleteUserById(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println(id);
+		return userDao.deleteUserById(id);
 	}
 
 	public BaseUser findUser(BaseUser user) {
@@ -55,6 +53,17 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public BaseUser getUserByName(BaseUser user) {
 		return userDao.getUserByName(user);
+	}
+
+	@Override
+	public int getRowNum() {
+		return userDao.getRowNum();
+	}
+
+	@Override
+	public int forbidUserById(String userid) {
+		System.out.println(userid);
+		return userDao.forbidUserById(userid);
 	}
 
 }

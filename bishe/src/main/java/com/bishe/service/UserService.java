@@ -18,4 +18,6 @@ public interface UserService {
 	BaseUser findUser(BaseUser user);
 	List<BaseUser> getOnlineMember();
 	BaseUser getUserByName(BaseUser user);
+	int getRowNum();
+	int forbidUserById(String userid);
 }

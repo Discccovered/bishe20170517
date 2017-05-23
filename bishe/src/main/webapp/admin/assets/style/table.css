@@ -6,10 +6,10 @@ body,
 }
 .left-content {
 	background-color:black;
-	width:50px;
+	width:100px;
     height: 100%;
     min-height: 100%;
-    padding: 10px;
+    padding: 30px;
     box-shadow: 0 0 30px rgba(0,0,0,0.2);
   }
   .left-content *{
@@ -21,8 +21,8 @@ body,
 }
 .left-content ul li {
   list-style: none;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 30px;
   text-align: center;
 }
 .left-content ul li.active {
@@ -34,11 +34,11 @@ body,
 }
 
 .left-content ul li a {
-  font-size: 14px;
+  font-size: 15px;
   color: #999;
 }
 .left-content ul li a i {
-	margin:0;
+	  margin-top:30px;
   display: block;
 }
 
